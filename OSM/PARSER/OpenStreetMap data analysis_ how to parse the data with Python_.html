@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/ -->
+<html lang="en-GB" class="css3transitions js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+
+    <link rel="icon" href="http://oslandia.com/wp-content/uploads/2015/02/icon.png" type="image/png">
+    <!-- Title -->
+
+    <title>OpenStreetMap data analysis: how to parse the data with Python?   </title>
+
+    <!-- Responsive Meta -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+    <!-- Pingback URL -->
+    <link rel="pingback" href="http://oslandia.com/xmlrpc.php">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+
+	<!--[if lt IE 9]>
+
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+	<![endif]-->
+
+      
+
+
+  <style type="text/css">
+    
+  	body{background: #fff 
+
+  	
+    
+  	}
+    .boxed_layout,  .top_wrapper{background: #fff;}
+
+    /* Custom Css Box */
+
+     .services_small p,
+.services_medium p,
+.services_media p, 
+.services_boxed p,
+.serv_content p,
+.description,
+.dynamic_page_header p {
+  font-size: 14px !important;
+}
+
+.largeboldblack111111
+{
+	font-size: 42px;
+	line-height: 60px;
+	font-weight: 800;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	text-decoration: none;
+	background-color: transparent;
+	border-width: 0px;
+	border-color: #ffd658;
+	border-style: none;
+}
+.largeboldblack333333
+{
+	font-size: 16px;
+	line-height: 60px;
+	font-weight: 800;
+	font-family: "Open Sans";
+	color: #5ec9c8;
+	text-decoration: none;
+	background-color: transparent;
+	border-width: 0px;
+	border-color: #ffd658;
+	border-style: none;
+}
+.page_header_yes #content {
+    padding-top: 20px !important;
+}
+#logo img { 
+margin-top: -10px !important;
+}
+
+.single .breadcrumbss,
+.basic .breadcrumbss  {
+  display: none;
+}
+
+ul.socials + h3 {
+  display: none;
+}
+
+.header_search {
+  display: none;
+}
+
+.separator-formation {
+      margin-bottom: 0px !important;
+}
+
+.widget_polylang li {
+  margin-right: 5px;
+}
+
+.fixed_header #logo img {
+    max-height: 60px;
+    margin-top: 0px !important;
+}
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form select,
+.wpcf7-form textarea {
+    width: 90% !important;
+    text-transform: none !important;
+}
+
+div.wpcf7-mail-sent-ok {
+  border: none !important;
+}
+
+.wpcf7-form textarea {
+  margin-top: 0px !important;
+}
+
+.portfolio-meta {
+  border-left: 3px solid #eee;
+  padding: 10px;
+}     /* End Custom Css Box */ 
+
+  	input,button,select,textarea,body,span, aside .widget_twitter li,.ui-slider-tabs-list li a span, aside ul li a, nav .menu li ul.sub-menu li a, .skill_title{font-family: Raleway;  }
+    input,button,select,textarea,body, aside .widget_twitter li { font-size: 14px; color:#4a4a4a; }
+  	h1,h2,h3,h4,h5,h6,.ui-slider-tabs-list li a,.page_intro h1, .kwicks .box p.title, .single-post .single_title{font-family: Raleway}
+    aside ul li a, .recent_posts_widget #recent .title a{color: #3a74ac;}  
+    nav .menu > li > a{font-family: Raleway;}
+    nav .menu li ul.sub-menu li a{color: #ffffff !important;}
+    nav .menu li > ul.sub-menu.non_mega_menu li:hover, nav .menu .sub-menu.non_mega_menu li.current-menu-item {background: #333333}
+      nav .menu li > ul.sub-menu li:hover, nav .menu .sub-menu li .sub-menu li.current-menu-item{background: #333333}
+        header#header, .header_4 #navigation, .right_search_container input[type="text"], .header_3 .nav_top {background: rgba(255,255,255,0);}
+
+    header#header.fixed_header, .header_4 .fixed_header #navigation, .fixed_header .right_search_container input[type="text"]{background:rgba(255,255,255,1)}
+  	h1{font-size: 30px}
+
+  	h2{font-size: 24px}
+
+  	h3{font-size: 17px}
+
+  	h4{font-size: 16px}
+
+  	h5{font-size: 15px}
+
+  	h6{font-size: 14px}
+
+    nav .menu > li > a{font-size: 14px}
+
+       
+        
+    
+    #logo{width:208px; margin-top: 0px; margin-bottom:50px;}
+      
+
+    
+     .header_wrapper.header_1.no-transparent, .header_wrapper.header_2.no-transparent{height: 142px !important;}
+
+              
+  
+
+    
+      .header_7 .nav_top{margin-top: -5px;}
+      .header_7 #logo{padding-top: 18px;}
+      .header_7 header .right_search{margin-top: 41px; height: 17px;}
+      .header_7 header#header{height:78px;}
+
+
+      
+
+     
+    header#header{border-top:4px solid #3a74ac;}
+
+    
+  
+
+  
+    			
+    			#logo img{display: none;}
+
+    			#logo img.light{opacity: 1 !important; display: block;}
+
+    			
+    
+    
+      .top_nav {display: none;}
+
+
+        nav .menu > li > a{color:#4a4a4a;}
+    nav .menu>li:hover>a, nav .menu>li.current-menu-item > a {color:#ffffff ;}
+    .background--dark header#header.sticky_header.fixed_header .right_search_container input[type="text"], .background--dark header#header.sticky_header.fixed_header .right_search_container .input-append i {color:#4a4a4a}   
+    header#header.sticky_header.fixed_header nav .menu li > a{ color:#4a4a4a }
+    header .right_search i, .arrow_down i{color: #3a74ac;}
+    .header_1 nav .menu li > a, .header_4 nav .menu li > a, .header_2 nav .menu > li > a {color:#4a4a4a;}
+    footer#footer .inner{background:#292828; color:#828282;} 
+   .animated_counter .count_to:after, .services_small h4:after,.dark .dynamic_page_header .line_under .line_left{background: #3a74ac}
+    footer .tabbable .nav-tabs > li > a {color:#828282;}
+    #popular_widget dl {border-bottom:1px solid #45494f; } 
+    footer#footer #copyright{background:#212121; color:#828282;} 
+    #mc_signup_form .mc_input{background: #212121 !important;}
+    .top_nav, .top_nav_sub.login, .cart .content{background:#f8f8f8}
+    .top_nav_sub.login, .top_nav_sub.login input, .cart .content{border:1px solid #f2f2f2;}
+    .top_nav .social_widget li i:hover{color: #3a74ac}
+    .top_nav .topinfo .phone, .top_nav .topinfo .email, .top_nav .social_widget li i{color:#555}
+    .top_nav .widget{border-left:1px solid #f2f2f2; border-right:1px solid #f2f2f2;}
+    .top_nav .widget_text, .login.small_widget .widget_activation a, .headecart.small_widget .widget_activation a, .lang_sel_sel.icl-en, .top_nav #lang_sel a, #lang_sel a.lang_sel_sel:hover{color:#555;}
+    aside .tweet_list dt i, #popular_widget i, footer a.twitter-link, footer span a{color:#3a74ac}
+    footer a:hover, #copyright .widget ul li a:hover,#copyright .widget ul li.current_page_item a{color:#3a74ac}
+    .footer_social_bar:before, .top_footer .title, footer .footer_social_icons li a:hover
+  {background:#00799E;}  
+    .footer_social_bar .triangle{border-left: 35px solid #00799E;}  
+    aside .tweet_list dt {border:1px solid #3a74ac;} 
+    .widget #wp-calendar a, #faq-filter ul li.active a, #faq-filter ul li a:hover, .portfolio_go a i, .portfolio-item.v2 .categories {color:#3a74ac;}
+    .portfolio_go, .tp-button.btn-system.normal.outline:hover{background-color: #3a74ac;}
+    .tp-button.btn-system.normal.outline:hover, .tp-button.btn-system.normal{border:2px solid #3a74ac;} 
+    .recent_portfolio a.categories.a2{color:#3a74ac; }
+    a:hover, footer .inner .widget_contact_info li i, .blog-article h1 a:hover,aside ul li:hover a, .blog-article .info ul.shares li:hover i, .dark .services_medium_new i, .dark .services_medium_new a, .dark .services_medium_new h6, .services_medium_new h6 a:hover, .recent_news .news-carousel-item dl .info, .services_medium_box h5 a, .services_medium_box .read_m, .services_medium_left dl dt .icon_wrapper i, .services_medium_left dl dd > a, .services_medium:hover i, .services_small .services_small_container .services_small_icon i ,.dark .dynamic_page_header i, .one-staff .social_widget ul li:hover i, .light .services_small dt i, .single_testimonial .content .data h6, .star-rating span, ul.products .product .price, #woocommerce .product .summary .price, .woocommerce .product .summary .price, .right_search i:hover, .swiper-slide.blog-article .content a:hover, .contact_info .social ul li a:hover, .single_testimonial .content span   {color:#3a74ac;}
+    nav .menu > li > ul.sub-menu, nav .menu > li > ul.sub-menu ul, nav .themeple_custom_menu_mega_menu, nav .menu li > ul.sub-menu li{background: #242424}
+nav .menu > li > ul.sub-menu, nav .menu > li > ul.sub-menu ul{
+    border: solid 1px #242424;
+  }
+    footer .tabbable .nav-tabs li, footer .tabbable .nav-tabs li   {background:#212121;}
+    footer .tagcloud a{border:1px solid #45494f;}  
+    footer .tagcloud a:hover, .footer_social_bar, .blog-article dt .date.box, #faq-filter ul li:hover, #faq-filter ul li.active, .portfolio-item .link:hover, article .content .dl-horizontal dt .dt, .single article .content .dl-horizontal dt .dt , aside h5.widget-title:after, .details_side h1:after,  .meta-content .meta h1:after, .arrow_right_circle:after {background:#3a74ac;}
+    .top_nav .widget ul li a:hover, .information i{color:#3a74ac;} 
+    .top_nav .widget span, .top_nav .widget ul li a, .top_nav .checkout_link a i, .top_nav .view_cart a i {color:#555}
+    .top_nav {border: 1px solid #f2f2f2;}
+    #faq-filter ul li:hover, #faq-filter ul li.active {border-right:1px solid #3a74ac;}
+
+    #faq-filter ul li.active{border-left:1px solid #3a74ac;}
+    .woocommerce ul.products li.product .links a, .woocommerce ul.products li.product .price,
+    .woocommerce ul.products li.product .price .amount, .woocommerce ul.products li.product .price ins, 
+    .woocommerce ul.products li.product .price del{color:#3a74ac; }
+    .woocommerce ul.products li.product .links a:hover, .woocommerce ul.products li.product .onsale, .woocommerce-page ul.products li.product .onsale{background: #3a74ac}
+    .woocommerce ul.products li.tpl2:hover {border:1px solid #3a74ac;}
+    .woocommerce #content div.product form.cart .button, 
+    .woocommerce div.product form.cart .button, 
+    .woocommerce #content div.product form.cart .button, 
+    .woocommerce div.product form.cart .button{background: #3a74ac}
+    .services_step:hover i{border:1px solid #3a74ac;}
+    .services_step:hover i{background: #3a74ac;}
+    .skill .prog, .contact_form input[type="submit"]{background:#3a74ac;}
+    .header_border_left, .header_border_right, .border_counter_center, .map-button .header {background:#3a74ac;}
+    
+    .full_testimonials .pagination a.selected{border-color: #3a74ac;}
+    .btn-system.only_border:hover{background: #3a74ac; border:1px solid #3a74ac !important;}
+    .btn-system.default{border:2px solid #3a74ac;}
+    .dark .animated_counter .icons i{color: #3a74ac;}
+    .btn-system.normal{background:#3a74ac;}
+    header nav .menu > li > a:before{background: #3a74ac;}
+    .chart_skill .text .percent_color, .block_skill  span {color: #3a74ac;}
+    .accordion .accordion-heading.in_head:before{background: #3a74ac}
+    .header_bar{background:#3a74ac;}
+    .header_bar h3, .header_bar .pull-right.socials li a{color:#f6f6f6;}
+    .header_bar .pull-right.socials li a:hover{color: #3a74ac}
+    .accordion .accordion-heading.in_head:after{color: #3a74ac}
+    .not_found_error  .search #searchsubmit{background: #3a74ac;}
+    .not_found_error  .search #searchsubmit{border:2px solid #3a74ac;}
+    .p_pagination .pagi ul li a, .p_pagination .nav-previous a, .p_pagination .nav-next a {border:1px solid #3a74ac; color:#3a74ac;}
+    .p_pagination .pagi ul li.selected a, .p_pagination .pagi ul li a:hover, .p_pagination .nav-next a:hover, .p_pagination .nav-previous a:hover {background:#3a74ac; border:1px solid #3a74ac;}
+    aside .tagcloud a:hover{background: #3a74ac;}   
+    .single_content.side_single .flex-direction-nav li:last-child a, .single_content.side_single .flex-direction-nav li a, .flex-direction-nav li a{background-color:#3a74ac}  
+    #blogmasonery .readm, .shares li a{color:#4a4a4a;}
+    .shares li a:hover, .blog-article .info > li i{color:#3a74ac;}
+    .left_content .border_bottom_left{background: #3a74ac;}
+    .style_3 .border_center, .header_page .border_center{background: #3a74ac}
+    .services_step i, .services_boxed span a{color:#3a74ac;}
+    .services_step:hover .line_left, .services_step:hover .line_right{background: #3a74ac;}
+    
+    .services_boxed .icon_wrapper {background: #3a74ac;}
+    #blogmasonry .readm:hover, .load_more_pagination .load_new, .quote_box{background:#3a74ac}
+    aside .tagcloud a:hover, .flex-control-thumbs li:hover{border:1px solid #3a74ac;}
+    .light .single_testimonial .content .data span{color: #3a74ac;}
+    .center-bar .btn-system:hover{background:#3a74ac;}
+    .tabbable .nav-tabs li.active{background: #3a74ac;}
+    .line_under_full .read_1:hover{background: #3a74ac;}
+    .line_under_full .read_2:hover{color:#3a74ac;}
+    .dl-horizontal.list dt .circle i{color:#3a74ac;}
+    aside .tagcloud a{border:1px solid #3a74ac;}
+    .header_page.basic.single{background:#f6f6f6;}
+    .header_page.basic.single h1{color:#000000;}
+    .portfolio_single_nav li a:hover{color:#3a74ac;}
+    .single_content .meta i{border:2px solid #3a74ac; color:#3a74ac;}
+    .dynamic_page_header.left .header_border, .dynamic_page_header.right .header_border{background: #3a74ac}
+    .portfolio_big_title, .line_under_full .read_1{color:#3a74ac}
+    .line_under .line_center{background:#3a74ac;}
+    .services_boxed .readmore:hover{background: #3a74ac; border:2px solid #3a74ac;}
+    .line_under_full .full_center{background: #3a74ac}
+    .services_boxed .readmore{color: #3a74ac}
+    .header_wrapper.no-transparent{background: #ffffff}
+    .services_small_icon{border:2px solid #3a74ac;}
+    .services_small:hover .services_small_icon{background: #3a74ac} 
+    .latest_blog .date_divs, .latest_blog .month_div{background: #3a74ac}
+    .latest_blog .overlay li, .blog-article .date {color: #3a74ac}
+    .latest_blog .blog-article.grid .content a.readmore, .latest_blog .blog-article.grid .overlay li, .latest_blog .blog-article.grid .overlay, .post_type i, .recent_news .news-carousel-item dl dd .read_more a{color: #3a74ac !important;}
+    .clients .item {width: 162px; height: 106px;}
+
+    /*Animated Counters*/
+    .light .animated_counter .icons i{ color: #3a74ac;}
+     /* Border */
+    
+          
+        .header_wrapper.no-transparent{border-bottom: 1px solid #f2f2f2;}
+
+          aside .tagcloud a{border:1px solid #e1e1e1}    
+     .border_before{background: #e1e1e1;}
+     header .right_search {border-left:1px solid #e1e1e1;}
+     .services_slideshow_icon:hover{background: #3a74ac}
+     .recent_news .month_div{background: #3a74ac}
+     .textbar-container{border:1px solid #e1e1e1;} 
+     .single_content .flex-direction-nav li:first-child a:hover, .single_content .flex-direction-nav li:last-child a:hover, .flex-direction-nav li a.flex-prev:hover, .flex-direction-nav li a.flex-next:hover{background-color:#3a74ac!important}
+     .textbar-container ={border:1px solid #3a74ac;}
+     nav .menu li > ul.sub-menu li{border-bottom: 1px solid #333333}
+     nav .menu li > ul.sub-menu li{background: #242424}                                 
+    .clients_el.no .clients .item:nth-child(2), .clients_el.no .clients .item:nth-child(6) {border-left:1px solid #e1e1e1; border-right:1px solid #e1e1e1;}
+    .line_under_full .read_1{border:1px solid #e1e1e1;}
+    .tpl2{border:1px solid #e1e1e1;}
+    .clients_el.no .clients .separator{background: #e1e1e1}
+    .line_under .line_right, .line_under_full .line_full:after{background: #e1e1e1}
+    .services_boxed .readmore{border:2px solid #e1e1e1;}
+    .portfolio_single_header:after{background: #e1e1e1}
+    .single_content .meta-content .meta h1{border-bottom:1px solid #e1e1e1;}
+    #portfolio-filter #filters{border:1px solid #e1e1e1;}
+    .themeple_blockquote{border-left:2px solid #3a74ac;}
+    .one-staff:hover .social_widget{border-bottom: 2px solid #3a74ac;}
+    .one-staff .position_title:after, .one-staff .social_widget ul li:hover, .contact_info .social ul li:hover, .header_3 .footer_social_icons li:hover{background-color:  #3a74ac;}
+    .not_found_error .search input{border:1px solid #e1e1e1;}
+
+    .recent_news .post_type, .latest_blog .post_type{border-right:1px solid #e1e1e1; border-left:1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1}
+    .recent_news .date_div{background:#3a74ac;}
+    .light .services_boxed .icon_wrapper  {border:1px solid #3a74ac} 
+      .single_testimonial h5{color: #3a74ac}
+    .recent_news .tags, .latest_blog .tags i, .services_media .read_more a, .recent_news .news-carousel-item dl dd .read_right a{color:#3a74ac;}
+    .details_side span, .meta-content .meta span.uppertitle{color: #3a74ac;}  
+    .portfolio_single_nav li a, .skill{border:1px solid  #e1e1e1}
+    .row-dynamic-el .header h2:after , .themeple_sc .header h2:after{background:#3a74ac}
+   
+    .services_medium .icon_wrapper{background:#3a74ac} 
+    .services_medium .read_more .readmore:hover{color:#3a74ac}
+    aside #s {border:1px solid #e1e1e1;}
+    /*.blog-article.grid .info{border-bottom: 1px solid #e1e1e1;}*/
+    #content.masonry{background: #f6f6f6 !important;}
+   .controls a, .recent_portfolio.pagination a, .recent_news .pagination a {border:1px solid #e1e1e1;}
+  
+    aside dl:first-child{border-top:1px solid #e1e1e1}
+
+    .comment .upper{border-bottom:1px solid #e1e1e1;}
+    .page_parents li a:hover{color:#3a74ac}
+    .widget_recent_content .tabbable.style_1 .nav-tabs li{
+      border-left:1px solid #e1e1e1; 
+      border-right:1px solid #e1e1e1; 
+      border-bottom:1px solid #e1e1e1;
+    }
+   
+        
+    aside .widget_recent_content #recent dl, 
+    aside .widget_recent_content #popular dl, 
+    footer .widget_recent_content #recent dl, 
+    footer .widget_recent_content #popular dl,
+    aside .widget_recent_content #comments_recent dl,
+    footer .widget_recent_content #comments_recent dl
+    {
+
+      border-bottom:1px solid #e1e1e1;
+    }
+
+    .side-nav {border-right:1px solid #e1e1e1 ;} 
+
+
+    .one-staff .left_border{background: #3a74ac} 
+
+    .one-staff .right_border{background: #3a74ac}
+    
+    
+    /* End Border #e6e9ea */
+    #portfolio-filter ul li.active,#portfolio-filter ul li:hover{background:#3a74ac; }
+    .side-nav li.current_page_item a, .readm{color: #3a74ac;}
+    .widget_recent_content .tabbable .nav-tabs > li > a{color: #4a4a4a;}
+    .btn-system.standard{background: #3a74ac; border:2px solid #3a74ac;}
+    .coupon input.btn-system, .actions input.btn-system, .shipping-calculator-form .btn-system, .form-row.place-order #place_order, .checkout_coupon .btn-system{background: #3a74ac}
+    #respond input[type="submit"]{background: #3a74ac; border:2px solid #3a74ac;}
+    .dynamic_page_header.style_3 h1, .dynamic_page_header.style h1, .dynamic_page_header .subtitle {color: #3a74ac;} 
+    nav .menu > li.current-menu-item a, nav .menu > li:hover a, nav .menu > li.current-menu-parent a,  nav .menu > li.current_page_ancestor a, nav .menu > li.current-menu-ancestor a, nav .menu>li.current-menu-item:after,nav .menu > li:hover:after, nav .menu > li.current-menu-parent:after, .fullwidth_slider_page .header_1.transparent nav .menu li.current-menu-item > a {color: #3a74ac;}
+   
+    
+   
+   .header_page.centered{height:;}
+
+ 
+
+  
+
+     </style>
+
+
+   		
+      
+   		 
+
+        
+
+      
+          
+    <title>OpenStreetMap data analysis: how to parse the data with Python? – Oslandia</title>
+
+ <script async="" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/analytics.js"></script><script type="text/javascript">
+ /* <![CDATA[ */  
+var themeple_global = { 
+ 	ajaxurl: 'http://oslandia.com/wp-admin/admin-ajax.php'
+ 	}; 
+ /* ]]> */ 
+ </script>
+ 
+ <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Oslandia » Feed" href="http://oslandia.com/en/feed/">
+<link rel="alternate" type="application/rss+xml" title="Oslandia » Comments Feed" href="http://oslandia.com/en/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/oslandia.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.7"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./OpenStreetMap data analysis_ how to parse the data with Python__files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="layerslider-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/layerslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="font_extra-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/css(2)" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-responsive-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/bootstrap-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery.fancybox-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.fancybox.css" type="text/css" media="all">
+<link rel="stylesheet" id="hoverex-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/hoverex-all.css" type="text/css" media="all">
+<link rel="stylesheet" id="vector-icons-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/vector-icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="linecon-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/linecon.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="steadysets-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/steadysets.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery.easy-pie-chart-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.easy-pie-chart.css" type="text/css" media="all">
+<link rel="stylesheet" id="idangerous.swiper-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/idangerous.swiper.css" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./OpenStreetMap data analysis_ how to parse the data with Python__files/tablepress-combined.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/greensock.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/layerslider.kreaturamedia.jquery.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/layerslider.transitions.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.easy-pie-chart.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.appear.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/modernizr.custom.66803.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/odometer.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/animations.js"></script>
+<link rel="https://api.w.org/" href="http://oslandia.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://oslandia.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://oslandia.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Training session with INRAP : open source tools for point cloud visualization and processing" href="http://oslandia.com/en/2017/06/29/formation-with-inrap-open-source-tools-for-point-cloud-visualisation-and-processing/">
+<link rel="next" title="OpenStreetMap tag genome: how are OSM objects tagged?" href="http://oslandia.com/en/2017/07/10/osm-tag-genome-how-are-osm-objects-tagged/">
+<meta name="generator" content="WordPress 4.7.7">
+<link rel="canonical" href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/">
+<link rel="shortlink" href="http://oslandia.com/?p=3765">
+<link rel="alternate" type="application/json+oembed" href="http://oslandia.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Foslandia.com%2Fen%2F2017%2F07%2F03%2Fopenstreetmap-data-analysis-how-to-parse-the-data-with-python%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://oslandia.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Foslandia.com%2Fen%2F2017%2F07%2F03%2Fopenstreetmap-data-analysis-how-to-parse-the-data-with-python%2F&amp;format=xml">
+<meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="http://oslandia.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><noscript>&lt;style type="text/css"&gt; .wpb_animate_when_almost_visible { opacity: 1; }&lt;/style&gt;</noscript><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<!-- End of Header -->
+
+
+
+<body class="post-template-default single single-post postid-3765 single-format-standard header_1_body with_featured_img page_header_yes wpb-js-composer js-comp-ver-5.0.1 vc_responsive">
+
+  <!-- Used for boxed layout -->
+        
+
+    <!-- Start Top Navigation -->
+    
+    <!-- End of Top Navigation -->
+
+    
+
+    <!-- Page Background used for background images -->
+    <div id="page-bg"></div>
+
+            
+            <!-- Header BEGIN -->
+          <div class="viewport ">
+    <!-- one page -->
+    
+           
+ 
+    <div class="header_wrapper header_1 no-transparent   ">
+        <header id="header" class="sticky_header">
+
+
+
+            <div class="container">
+        	   <div class="row-fluid">
+                    <div class="span12">
+                       
+
+                        <!-- Logo -->
+                                                <div id="logo" class="">
+                            <a href="http://oslandia.com/en/home-en/"><img src="./OpenStreetMap data analysis_ how to parse the data with Python__files/oslandia_logo-1.png" alt=""><img src="./OpenStreetMap data analysis_ how to parse the data with Python__files/oslandia_logo-1.png" alt="" class="light"></a>                        </div>
+                      
+                        <!-- #logo END -->
+    			         
+                        <div class="after_logo"> 
+                            
+
+                                <!-- Search -->
+
+                                
+                                        <div class="header_search">
+                                            <div class="right_search">
+                                               <i class="moon-search-2"></i>
+                                            </div>
+                                            <div class="right_search_container">
+<form action="http://oslandia.com/en/" id="search-form">
+                            <div class="input-append">
+                                <input type="text" size="16" placeholder="Search…" name="s" id="s"><button type="submit" class="more">Search</button>
+                            	<a href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/#" class="close_"><i class="moon-close"></i></a>
+                            </div>
+</form> </div> 
+                                        </div>
+                                                                    <!-- End Search-->
+                        </div>        
+
+                        
+                        <!-- Show for all header expect header 4 -->
+
+
+                                 <div id="navigation" class="nav_top pull-right  ">
+                                    <nav>
+                                    <ul id="menu-main-en" class="menu themeple_megemenu sub-menu"><li id="menu-item-2438" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://oslandia.com/en/services-2/">Services</a></li>
+<li id="menu-item-2439" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://oslandia.com/en/support-2/">Support</a></li>
+<li id="menu-item-2559" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://oslandia.com/en/trainings/">Training</a></li>
+<li id="menu-item-3392" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://oslandia.com/en/customers/">Customers</a></li>
+<li id="menu-item-2671" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent"><a href="http://oslandia.com/en/blog/">Blog</a></li>
+<li id="menu-item-2440" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://oslandia.com/en/team/">Team</a></li>
+<li id="menu-item-3665-fr" class="lang-item lang-item-64 lang-item-fr no-translation menu-item menu-item-type-custom menu-item-object-custom"><a href="http://oslandia.com/fr/home/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGzSURBVHjaYiyeepkBBv79+Zfnx/f379+fP38CyT9//jAyMiq5GP77wvDnJ8MfoAIGBoAAYgGqC7STApL///3/9++/pCTv////Qdz/QO4/IMna0vf/z+9/v379//37bUUTQACBNDD8Z/j87fffvyAVX79+/Q8GQDbQeKA9fM+e/Pv18/+vnwzCIkBLAAKQOAY5AIAwCEv4/4PddNUm3ji0QJyxW3rgzE0iLfqDGr2oYuu0l54AYvnz5x9Q6d+/QPQfyAQqAin9B3EOyG1A1UDj//36zfjr1y8GBoAAFI9BDgAwCMIw+P8Ho3GDO6XQ0l4MN8b2kUwYaLszqgKM/KHcDXwBxAJUD3TJ779A8h9Q5D8SAHoARP36+Rfo41+/mcA2AAQQy49ff0Cu//MPpAeI/0FdA1QNYYNVA/3wmwEYVgwMAAHE8uPHH5BqoD1//gJJLADoJKDS378Z//wFhhJAALF8A3rizz8uTmYg788fJkj4QOKREQyYxSWBhjEC/fcXZANAALF8+/anbcHlHz9+ffvx58uPX9KckkCn/gby/wLd8uvHjx96k+cD1UGiGQgAAgwA7q17ZpsMdUQAAAAASUVORK5CYII=" title="Français" alt="Français"></a></li>
+</ul>                                    </nav><select class="select-menu" style="-webkit-appearance: menulist-button; width: 0px; position: absolute; opacity: 0; height: 0px; font-size: 14px;"><option value="#">Navigate to...</option><option value="http://oslandia.com/en/services-2/">–&nbsp;Services</option><option value="http://oslandia.com/en/support-2/">–&nbsp;Support</option><option value="http://oslandia.com/en/trainings/">–&nbsp;Training</option><option value="http://oslandia.com/en/customers/">–&nbsp;Customers</option><option value="http://oslandia.com/en/blog/">–&nbsp;Blog</option><option value="http://oslandia.com/en/team/">–&nbsp;Team</option><option value="http://oslandia.com/fr/home/">–&nbsp;</option></select><span class="customSelect" style="display: inline-block;"><span class="customSelectInner" style="width: 220px; display: inline-block;">Navigate to...</span></span>
+                                </div><!-- #navigation -->
+                                <!-- bottom widget area for vertical navigation-->
+                                      			        
+                         <!-- End custom menu here -->
+    		    	     <a href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/#" class="mobile_small_menu open"></a>
+                    </div>
+                </div>
+
+               
+            </div>
+
+             
+        </header>
+                <div class="header_bar">
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h3 class="pull-left header-infos"><span class="hidden-small-width"><a href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/#footer">Paris, Lyon  </a> | <a href="tel:  +33 184 170 757">  +33 184 170 757  </a> | <a href="mailto:%20%20infos@oslandia.com">  infos@oslandia.com</a></span><span class="hidden-large-width"><a href="tel:  +33 184 170 757">  +33 184 170 757  </a> | <a href="mailto:%20%20infos@oslandia.com">  infos@oslandia.com</a></span></h3>
+                                                <ul class="pull-right socials">
+                            
+                                                                                            <li><a href="https://github.com/Oslandia"><i class="moon-github"></i></a></li>
+                                
+                                                                                                                            <li><a href="https://twitter.com/oslandia_en?lang=en"><i class="moon-twitteren"></i></a></li>
+                                
+                                                                                            <li><a href="https://www.linkedin.com/company/oslandia"><i class="moon-linkedin"></i></a></li>
+                                
+                                                    </ul>
+                                                <h3 style="float:right">Follow Us on</h3>
+                    </div>
+                </div>
+            </div>
+         </div> 
+
+              
+                <div class="header_shadow"><span class=""></span></div>
+                <!-- Responsive Menu -->
+        <div class="menu-small">
+	
+	<ul class="menu"><li class=" menu-item-has-children"><a href="http://oslandia.com/en/services-2/">Services</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/en/support-2/">Support</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/en/trainings/">Training</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/en/customers/">Customers</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/en/blog/">Blog</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/en/team/">Team</a></li><li class=" menu-item-has-children"><a href="http://oslandia.com/fr/home/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGzSURBVHjaYiyeepkBBv79+Zfnx/f379+fP38CyT9//jAyMiq5GP77wvDnJ8MfoAIGBoAAYgGqC7STApL///3/9++/pCTv////Qdz/QO4/IMna0vf/z+9/v379//37bUUTQACBNDD8Z/j87fffvyAVX79+/Q8GQDbQeKA9fM+e/Pv18/+vnwzCIkBLAAKQOAY5AIAwCEv4/4PddNUm3ji0QJyxW3rgzE0iLfqDGr2oYuu0l54AYvnz5x9Q6d+/QPQfyAQqAin9B3EOyG1A1UDj//36zfjr1y8GBoAAFI9BDgAwCMIw+P8Ho3GDO6XQ0l4MN8b2kUwYaLszqgKM/KHcDXwBxAJUD3TJ779A8h9Q5D8SAHoARP36+Rfo41+/mcA2AAQQy49ff0Cu//MPpAeI/0FdA1QNYYNVA/3wmwEYVgwMAAHE8uPHH5BqoD1//gJJLADoJKDS378Z//wFhhJAALF8A3rizz8uTmYg788fJkj4QOKREQyYxSWBhjEC/fcXZANAALF8+/anbcHlHz9+ffvx58uPX9KckkCn/gby/wLd8uvHjx96k+cD1UGiGQgAAgwA7q17ZpsMdUQAAAAASUVORK5CYII=" title="Français" alt="Français"></a></li></ul>	
+</div>        <!-- End Responsive Menu -->
+    </div>
+       
+        <div class="top_wrapper   no-transparent">
+         
+
+    
+
+<!-- .header -->
+    <!-- Page Head -->
+    
+      <div class="header_page basic single" style=" -webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+
+            <div class="container">
+
+                    <h1>OpenStreetMap data analysis: how to parse the data with Python?</h1>
+                    <div class="breadcrumbss">
+                        
+                        <ul class="page_parents pull-right">
+                            <li class="breadcrumbs_c"><i class="moon-home-3"></i>&nbsp;&nbsp;&nbsp;You are here</li>
+                            <li class="breadcrumbs_c"><a class="breadcrumbs_c" href="http://oslandia.com/en/home-en">Home</a></li>
+                            <li class="breadcrumbs_c"><a class="breadcrumbs_c" href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/?page_id=21">Blog</a></li>
+                                                        <li class="breadcrumbs_c"><a class="breadcrumbs_c" href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/">OpenStreetMap data analysis: how to parse the data with Python?</a></li>
+
+                        </ul>
+                    </div>
+
+            </div>
+
+            
+
+    </div>
+   
+    
+    
+
+
+   
+        
+<section id="content">
+
+
+    <div class="container" id="blog">
+        <div class="row">
+       
+        <div class="span9">
+    
+
+    <div class="posts_here">
+    
+        
+
+        <article id="post-3765" class="blog-article v1 normal post-3765 post type-post status-publish format-standard has-post-thumbnail hentry category-data tag-data tag-openstreetmap tag-osmium tag-python">                    
+
+               
+				                    
+                    <div class="media">
+                                            
+                    
+                            <img src="./OpenStreetMap data analysis_ how to parse the data with Python__files/osm_boundingbox_example-1100x600.png" alt="">
+                                                        
+                                                                        
+                    </div> 
+				                        
+                    <div class="content post_format_standart">
+                                      
+                       
+    					  	   
+                       
+                                        
+                    
+               
+<!--                <div class="date">On July 3, 2017</div> -->
+               <div class="date">3 July 2017</div>
+                
+             
+                  
+                        
+                           
+                      
+
+                                                                
+                               
+
+                               
+                               
+
+                                
+                                                            <h1><a href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/">OpenStreetMap data analysis: how to parse the data with Python?</a></h1>
+                                    
+
+                                  
+                                                       
+                          
+                                                
+                    
+                    
+                    
+                    
+                    <div class="blog-content">        
+                                        <div id="content">
+<p>At <a href="http://oslandia.com/">Oslandia</a>, we like working with Open Source tool projects and handling Open (geospatial) Data. In this article series, we will play with <a href="https://www.openstreetmap.org/">OpenStreetMap </a>(<i>OSM</i>) and the subsequent data. After considering <a href="http://oslandia.com/en/2017/06/26/openstreetmap-data-presentation-which-data-how-to-get-them/">geospatial data quality definition</a> in previous blog post, here comes the third article of this series, dedicated to the chronological overview of OSM data.</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h1 id="sec-1"><span class="section-number-2">1</span> How to get the data</h1>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h2 id="sec-1-1"><span class="section-number-3">1.1</span> Build our own OSM data sample</h2>
+<div id="text-1-1" class="outline-text-3">
+<p>First of all we have to recover a dataset. Two major solutions exist: either we dowload a regional area on <a href="http://download.geofabrik.de/">Geofabrik</a> (<i>e.g.</i> a <a href="http://download.geofabrik.de/europe.html">continent</a>, a <a href="http://download.geofabrik.de/europe/france.html">country</a>, or even a <a href="http://download.geofabrik.de/europe/france/aquitaine.html">sub-region</a>) in <i>osm</i> or <i>osh</i> version (<i>i.e.</i> up-to-date API or history), or we extract another free area with the help of <a href="http://osmcode.org/osmium-tool/">osmium-tool</a>. Even if the former solution is easier to implement, the latter one permits to work with alternative data sets. We detail this method in subsequent paragraphes.</p>
+<p><b>Note</b>: <code>osmium-tool</code> is available as a package in the Debian GNU/Linux distribution.</p>
+<p>Let us work with Bordeaux, a medium-sized French city. This alternative method needs the area geographical coordinates. We recover them by drawing the accurate bounding box within the OpenStreetMap <a href="https://www.openstreetmap.org/#map=10/45.0000/0.0000">API</a> export tool. We get the following bounding box coordinates: the top-left corner is at <code>{44.9335,-0.7179}</code> whilst the bottom-right corner is at <code>{44.7216, -0.4134}</code>. These coordinates seem quite weird (weirdly concise!), however they are just hand-made, by successive zooms in the OSM API.</p>
+<div id="attachment_3759" style="width: 950px" class="wp-caption aligncenter"><img class="wp-image-3759 size-large" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/osm_boundingbox_example-1024x725.png" alt="" width="940" height="666" srcset="http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example-1024x725.png 1024w, http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example-300x213.png 300w, http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example-768x544.png 768w, http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example-70x50.png 70w, http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example-930x659.png 930w, http://oslandia.com/wp-content/uploads/2017/06/osm_boundingbox_example.png 1228w" sizes="(max-width: 940px) 100vw, 940px"><p class="wp-caption-text">Hand-made bounding box on Bordeaux city (France)</p></div>
+<div class="org-src-container">
+<pre class="src src-js">{
+  <span style="color: #bdb76b;">"extracts"</span>: [
+    {
+      <span style="color: #bdb76b;">"output"</span>: <span style="color: #bdb76b;">"bordeaux-metropole.osh.pbf"</span>,
+      <span style="color: #bdb76b;">"output_format"</span>: <span style="color: #bdb76b;">"osh.pbf"</span>,
+      <span style="color: #bdb76b;">"description"</span>: <span style="color: #bdb76b;">"extract OSM history for Bordeaux (France)"</span>,
+      <span style="color: #bdb76b;">"bbox"</span>: {<span style="color: #bdb76b;">"left"</span>: -0.7179,
+               <span style="color: #bdb76b;">"right"</span>: -0.4134,
+               <span style="color: #bdb76b;">"top"</span>: 44.9335,
+               <span style="color: #bdb76b;">"bottom"</span>: 44.7216}
+     }
+  ],
+  <span style="color: #bdb76b;">"directory"</span>: <span style="color: #bdb76b;">"/path/to/outputdir/"</span>
+}
+</pre>
+</div>
+<p>This JSON file is used by osmium to build a standard <i>pbf</i> file in the following shell command:</p>
+<div class="org-src-container">
+<pre class="src src-shell">osmium extract --with-history --config=region.json latest-planet.osh.pbf
+</pre>
+</div>
+<p>Where <code>latest-planet.osh.pbf</code> is the input file (downloaded from Geofabrik website, we still need some original data!). <code>region.json</code> refers to the previously defined <i>JSON</i> file. The <code>--with-history</code> flag here is important as well. We want to study the temporal evolution of some OSM entities, the number of contributions, and check some specific OSM entities such as nodes, ways or relations and get their history.</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h2 id="sec-1-2"><span class="section-number-3">1.2</span> Extract OSM data history</h2>
+<div id="text-1-2" class="outline-text-3">
+<p>At this point, we have a <i>pbf</i> file that contains every OSM element versions through time. We still have to write them into a <i>csv</i> file. Here we use <a href="http://docs.osmcode.org/pyosmium/latest/index.html">pyosmium</a> (see previous article).</p>
+<p>This operation can be done through a simple Python file (see snippets below).</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #3333ff;">import</span> osmium <span style="color: #3333ff;">as</span> osm
+<span style="color: #3333ff;">import</span> pandas <span style="color: #3333ff;">as</span> pd
+
+<span style="color: #3333ff;">class</span> <span style="color: #7fffd4;">TimelineHandler</span>(osm.SimpleHandler):
+    <span style="color: #3333ff;">def</span> <span style="color: #98fb98;">__init__</span>(<span style="color: #3333ff;">self</span>):
+        osm.SimpleHandler.__init__(<span style="color: #3333ff;">self</span>)
+        <span style="color: #3333ff;">self</span>.elemtimeline = []
+
+    <span style="color: #3333ff;">def</span> <span style="color: #98fb98;">node</span>(<span style="color: #3333ff;">self</span>, n):
+        <span style="color: #3333ff;">self</span>.elemtimeline.append([<span style="color: #bdb76b;">"node"</span>,
+                                  n.<span style="color: #b0c4de;">id</span>,
+                                  n.version,
+                                  n.visible,
+                                  pd.Timestamp(n.timestamp),
+                                  n.uid,
+                                  n.changeset,
+                                  <span style="color: #b0c4de;">len</span>(n.tags)])
+</pre>
+</div>
+<p>First we have to import the useful libraries, that are pandas (to handle dataframes and <i>csv</i> files) and pyosmium. Then, we define a small OSM data handler, that saves every nodes into the <code>elemtimeline</code> attribute (<i>i.e.</i> a list). This example is limited to nodes for a sake of concision, however this class is easily extensible to other OSM objects. We can observe that several node attributes are recorded: the element type (“node” for nodes, of course!), ID, version in the history, if it is currently visible on the API, timestamp (when the version has been set), user ID, change set ID and the number of associated tags. These attributes are also available for ways and relations, letting the chance to put a little more abstraction in this class definition!</p>
+<p>An instance of this class can be created so as to save OSM nodes within the Bordeaux metropole area (see below). We pass the input file name to the <code>apply_file </code>procedure, that scans the input file and fills the handler list accordingly. After that we just have to transform the list into a pandas DataFrame, to make further treatments easier.</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #9acd32;">tlhandler</span> = TimelineHandler()
+tlhandler.apply_file(<span style="color: #bdb76b;">"../src/data/raw/bordeaux-metropole.osh.pbf"</span>)
+<span style="color: #9acd32;">colnames</span> = [<span style="color: #bdb76b;">'type'</span>, <span style="color: #bdb76b;">'id'</span>, <span style="color: #bdb76b;">'version'</span>, <span style="color: #bdb76b;">'visible'</span>, <span style="color: #bdb76b;">'ts'</span>, <span style="color: #bdb76b;">'uid'</span>, <span style="color: #bdb76b;">'chgset'</span>, <span style="color: #bdb76b;">'ntags'</span>]
+<span style="color: #9acd32;">elements</span> = pd.DataFrame(tlhandler.elemtimeline, columns=colnames)
+<span style="color: #9acd32;">elements</span> = elements.sort_values(by=[<span style="color: #bdb76b;">'type'</span>, <span style="color: #bdb76b;">'id'</span>, <span style="color: #bdb76b;">'ts'</span>])
+elements.head(10)
+</pre>
+</div>
+<pre class="example">   type        id  version  visible                        ts    uid  chgset  ntags
+0  node  21457126        2    False 2008-01-17 16:40:56+00:00  24281  653744      0
+1  node  21457126        3    False 2008-01-17 16:40:56+00:00  24281  653744      0
+2  node  21457126        4    False 2008-01-17 16:40:56+00:00  24281  653744      0
+3  node  21457126        5    False 2008-01-17 16:40:57+00:00  24281  653744      0
+4  node  21457126        6    False 2008-01-17 16:40:57+00:00  24281  653744      0
+5  node  21457126        7     True 2008-01-17 16:40:57+00:00  24281  653744      1
+6  node  21457126        8    False 2008-01-17 16:41:28+00:00  24281  653744      0
+7  node  21457126        9    False 2008-01-17 16:41:28+00:00  24281  653744      0
+8  node  21457126       10    False 2008-01-17 16:41:49+00:00  24281  653744      0
+9  node  21457126       11    False 2008-01-17 16:41:49+00:00  24281  653744      0
+</pre>
+<p>With the help of pandas library, to save the file into <i>csv</i> format is straightforward:</p>
+<div class="org-src-container">
+<pre class="src src-ipython">elements.to_csv(<span style="color: #bdb76b;">"bordeaux-metropole.csv"</span>, date_format=<span style="color: #bdb76b;">'%Y-%m-%d %H:%M:%S'</span>)
+</pre>
+</div>
+<p>At this point, the OSM data history is available in a <i>csv</i> file format, coming with a whole set of attributes that will be useful to describe the data.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h1 id="sec-2"><span class="section-number-2">2</span> How do the OSM API evolve through time?</h1>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h2 id="sec-2-1"><span class="section-number-3">2.1</span> A simple procedure to build dated OSM histories</h2>
+<div id="text-2-1" class="outline-text-3">
+<p>From the OSM data history we can recover the current state of OSM data (or more precisely, the API state at the data extraction date). The only needed step is to select the up-to-date OSM objects, <i>i.e.</i> those with the last existing version, through a <code>group-by</code> operation.</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #3333ff;">def</span> <span style="color: #98fb98;">updatedelem</span>(data):
+    <span style="color: #9acd32;">updata</span> = data.groupby([<span style="color: #bdb76b;">'type'</span>,<span style="color: #bdb76b;">'id'</span>])[<span style="color: #bdb76b;">'version'</span>].<span style="color: #b0c4de;">max</span>().reset_index()
+    <span style="color: #3333ff;">return</span> pd.merge(updata, data, on=[<span style="color: #bdb76b;">'id'</span>,<span style="color: #bdb76b;">'version'</span>])
+<span style="color: #9acd32;">uptodate_elem</span> = updatedelem(elements)
+uptodate_elem.head()
+</pre>
+</div>
+<pre class="example">  type_x        id  version type_y  visible                        ts    uid   chgset ntags
+0   node  21457126       48   node    False 2008-01-17 16:42:01+00:00  24281   653744     0
+1   node  21457144        9   node    False 2008-01-17 16:45:43+00:00  24281   653744     0
+2   node  21457152        7   node    False 2008-03-06 20:51:58+00:00  25762   277530     0
+3   node  21457164        5   node    False 2008-01-17 16:48:00+00:00  24281   653744     0
+4   node  21457175        4   node    False 2008-01-17 16:47:51+00:00  24281   653744     0
+</pre>
+<p>This seem to be a quite useless function: we could have found directly such data on GeoFabrik website, isn’t it? … Well, it is not that useless. As an extension of this first procedure, we propose a simple but seminal procedure called <code>datedelems</code> that allows us to get the OSM API picture given a specific date:</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #3333ff;">def</span> <span style="color: #98fb98;">datedelems</span>(history, date):
+    <span style="color: #9acd32;">datedelems</span> = (history.query(<span style="color: #bdb76b;">"ts &lt;= @date"</span>)
+                  .groupby([<span style="color: #bdb76b;">'type'</span>,<span style="color: #bdb76b;">'id'</span>])[<span style="color: #bdb76b;">'version'</span>]
+                  .<span style="color: #b0c4de;">max</span>()
+                  .reset_index())
+    <span style="color: #3333ff;">return</span> pd.merge(datedelems, history, on=[<span style="color: #bdb76b;">'type'</span>,<span style="color: #bdb76b;">'id'</span>,<span style="color: #bdb76b;">'version'</span>])
+
+<span style="color: #9acd32;">oldelem</span> = datedelems(elements, <span style="color: #bdb76b;">"2008-02-01"</span>)
+oldelem.head()
+</pre>
+</div>
+<pre class="example">   type        id  version  visible                        ts    uid  chgset  ntags
+0  node  21457126       48    False 2008-01-17 16:42:01+00:00  24281  653744      0
+1  node  21457144        9    False 2008-01-17 16:45:43+00:00  24281  653744      0
+2  node  21457152        6     True 2008-01-17 16:45:39+00:00  24281  653744      1
+3  node  21457164        5    False 2008-01-17 16:48:00+00:00  24281  653744      0
+4  node  21457175        4    False 2008-01-17 16:47:51+00:00  24281  653744      0
+</pre>
+<p>We can notice in this function that pandas allows to express queries in a SQL-like mode, a very useful practice in order to explore data! As a corollary we can build some time series aiming to describe the evolution of the API in terms of OSM objects (nodes, ways, relations) or users.</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h2 id="sec-2-2"><span class="section-number-3">2.2</span> How to get the OSM API evolution?</h2>
+<div id="text-2-2" class="outline-text-3">
+<p>What if we consider OSM API state month after month? What is the temporal evolution of node, way, or relation amounts? The following procedure helps us to describe the OSM API at a given date: how many node/way/relation there are, how many user have contributed, how many change sets have been opened. Further statistics may be designed, in the same manner.</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #3333ff;">def</span> <span style="color: #98fb98;">osm_stats</span>(osm_history, timestamp):
+    <span style="color: #9acd32;">osmdata</span> = datedelems(osm_history, timestamp)
+    <span style="color: #9acd32;">nb_nodes</span> = <span style="color: #b0c4de;">len</span>(osmdata.query(<span style="color: #bdb76b;">'type == "node"'</span>))
+    <span style="color: #9acd32;">nb_ways</span> = <span style="color: #b0c4de;">len</span>(osmdata.query(<span style="color: #bdb76b;">'type == "way"'</span>))
+    <span style="color: #9acd32;">nb_relations</span> = <span style="color: #b0c4de;">len</span>(osmdata.query(<span style="color: #bdb76b;">'type == "relation"'</span>))
+    <span style="color: #9acd32;">nb_users</span> = osmdata.uid.nunique()
+    <span style="color: #9acd32;">nb_chgsets</span> = osmdata.chgset.nunique()
+    <span style="color: #3333ff;">return</span> [nb_nodes, nb_ways, nb_relations, nb_users, nb_chgsets]
+
+osm_stats(elements, <span style="color: #bdb76b;">"2014-01-01"</span>)
+</pre>
+</div>
+<table border="2" frame="hsides" rules="groups" cellspacing="0" cellpadding="6">
+<colgroup>
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right"> </colgroup>
+<tbody>
+<tr>
+<td class="right">2166480</td>
+<td class="right">0</td>
+<td class="right">0</td>
+<td class="right">528</td>
+<td class="right">9345</td>
+</tr>
+</tbody>
+</table>
+<p>Here we do not get any way or relation, that seems weird, doesn’t it? However, do not forget how the parser was configured above ! By tuning it so as to consider these OSM element types, this result is modified. As a corollary this configuration only counts the users and change sets that contribute to nodes !</p>
+<p>By designing a last function, we can obtain a pandas dataframe that summarizes basic statistics at regular timestamps: in this example, we focus on monthly evaluations, however everything is possible… A finner analysis is possible, by taking advantage of pandas time series capability.</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #3333ff;">def</span> <span style="color: #98fb98;">osm_chronology</span>(history, start_date, end_date):
+    <span style="color: #9acd32;">timerange</span> = pd.date_range(start_date, end_date, freq=<span style="color: #bdb76b;">"1M"</span>).values
+    <span style="color: #9acd32;">osmstats</span> = [osm_stats(history, <span style="color: #b0c4de;">str</span>(date)) <span style="color: #3333ff;">for</span> date <span style="color: #3333ff;">in</span> timerange]
+    <span style="color: #9acd32;">osmstats</span> = pd.DataFrame(osmstats, index=timerange,
+                            columns=[<span style="color: #bdb76b;">'n_nodes'</span>, <span style="color: #bdb76b;">'n_ways'</span>, <span style="color: #bdb76b;">'n_relations'</span>,
+                                     <span style="color: #bdb76b;">'n_users'</span>, <span style="color: #bdb76b;">'n_chgsets'</span>])
+    <span style="color: #3333ff;">return</span> osmstats
+</pre>
+</div>
+<p>These developments open further possibilities. Areas are comparable through their history. A basic hypothesis could be: some areas have been built faster than others, <i>e.g.</i> urban areas <i>vs</i> desert areas. To investigate on the evolutions of their OSM objects appears as a very appealing way to address this issue!</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h2 id="sec-2-3"><span class="section-number-3">2.3</span> What about the Bordeaux area?</h2>
+<div id="text-2-3" class="outline-text-3">
+<p>To illustrate the previous points, we can call the <code>osm_chronology</code> procedure to Bordeaux-related OSM data. We can study the last 10 years, as an example:</p>
+<div class="org-src-container">
+<pre class="src src-ipython"><span style="color: #9acd32;">chrono_data</span> = osm_chronology(elements, <span style="color: #bdb76b;">"2007-01-01"</span>, <span style="color: #bdb76b;">"2017-01-01"</span>)
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-ipython">pd.concat([chrono_data.iloc[:10,[0,3,4]], chrono_data.iloc[-10:,[0,3,4]]])
+</pre>
+</div>
+<pre class="example">            n_nodes  n_users  n_chgsets
+2007-01-31       24        1          2
+2007-02-28       24        1          2
+2007-03-31       45        3          4
+2007-04-30       45        3          4
+2007-05-31     1744        4          8
+2007-06-30     1744        4          8
+2007-07-31     1744        4          8
+2007-08-31     3181        6         12
+2007-09-30     3186        7         15
+2007-10-31     3757        8         18
+2016-03-31  2315763      882      15280
+2016-04-30  2318044      900      15468
+2016-05-31  2321910      918      15841
+2016-06-30  2325689      931      16153
+2016-07-31  2329592      942      16613
+2016-08-31  2334206      955      16835
+2016-09-30  2337157      973      17005
+2016-10-31  2339526     1004      17462
+2016-11-30  2342109     1014      17637
+2016-12-31  2349670     1028      17933
+</pre>
+<p>The figure below describes the evolution of nodes, ways and relations around Bordeaux between 2007 and 2017, as well as the number of users and change sets. The graphes are log-scaled, for a sake of clarity.</p>
+<p>We can see that the major part of Bordeaux cartography has been undertaken between fall of 2010 and spring of 2013, with a clear peak at the beginning of 2012. This evolution is highly pronounced for nodes or even ways, whilst the change set amount and the contributor quantity increased regularly. This may denote the differences in terms of user behaviors: some of them create only a few objects, while some others contributes with a large amount of created entities.</p>
+<div id="fig:bm-chronology" class="figure">
+<div id="attachment_3767" style="width: 950px" class="wp-caption aligncenter"><img class="wp-image-3767 size-large" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/bordeaux-metropole-chronology-logscale-1024x503.png" alt="" width="940" height="462" srcset="http://oslandia.com/wp-content/uploads/2017/06/bordeaux-metropole-chronology-logscale-1024x503.png 1024w, http://oslandia.com/wp-content/uploads/2017/06/bordeaux-metropole-chronology-logscale-300x147.png 300w, http://oslandia.com/wp-content/uploads/2017/06/bordeaux-metropole-chronology-logscale-768x377.png 768w, http://oslandia.com/wp-content/uploads/2017/06/bordeaux-metropole-chronology-logscale-930x457.png 930w, http://oslandia.com/wp-content/uploads/2017/06/bordeaux-metropole-chronology-logscale.png 1120w" sizes="(max-width: 940px) 100vw, 940px"><p class="wp-caption-text">Amount of OSM objects in the area of Bordeaux (France)</p></div>
+</div>
+<p>As a remark, the number of active contributors plotted here is not really representative of the total of OSM contributors: we consider only local data here. Active users all around the world are not those who have collaborated for this specific region. However the change set and user statistics for full-planet dumps exist, if you are interested in going deeper about this point!</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h2 id="sec-2-4"><span class="section-number-3">2.4</span> Opening case study: comparing several french areas</h2>
+<div id="text-2-4" class="outline-text-3">
+<p>Before concluding this article, here is provided a comparison between OSM node amounts in several french areas. We just mention small areas, to keep the evaluation short: Upper Normandy, a roughly rural environment with some medium-sized cities (Rouen, Le Havre, Evreux…), Corsica, an montainous island near to mainland France and French Guiana, an overseas area mainly composed of<br>
+jungle. The figure below shows the difference between these areas in terms of OSM nodes and active contributors. To keep the comparison as faithful as possible, we have divided these amounts by each surface area: respectively 12137, 8680 and 83534 square kilometers for Upper Normandy, Corsica and French Guiana.</p>
+<div id="fig:multiarea-chronology-nodes" class="figure">
+<p><img class="alignnone wp-image-3774 size-full" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/multiarea-chronology-weighted-2.png" alt="" width="1000" height="500" srcset="http://oslandia.com/wp-content/uploads/2017/07/multiarea-chronology-weighted-2.png 1000w, http://oslandia.com/wp-content/uploads/2017/07/multiarea-chronology-weighted-2-300x150.png 300w, http://oslandia.com/wp-content/uploads/2017/07/multiarea-chronology-weighted-2-768x384.png 768w, http://oslandia.com/wp-content/uploads/2017/07/multiarea-chronology-weighted-2-930x465.png 930w" sizes="(max-width: 1000px) 100vw, 1000px"></p>
+</div>
+<p>Without any surprise, it is the mainland area (Upper Normandy) that is the most dense on OSM. This area contains almost 700 nodes per square kilometer (quite modest, however we talk about a rural area!). We can notice that they are almost the same number of contributors between Normandy and Corsica. On the other hand, French Guiana is an extrem example, as expected! There are less than 15 nodes and 0.01 contributor per square kilometer. We have identified a OSM desert, <a href="https://www.openstreetmap.org/#map=8/4.072/-52.844%20">welcome to the Guiana jungle</a> ! (You can act on it: be environment-friendly, <a href="http://wiki.openstreetmap.org/wiki/How_to_contribute">plant some more trees</a>!)</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h1 id="sec-3"><span class="section-number-2">3</span> Conclusion</h1>
+<div id="text-3" class="outline-text-2">
+<p>After this third article dedicated to OSM data analysis, we hope you will be OK with OSM data parsing. In the next article, we will focus to another parsing task: <a href="http://oslandia.com/en/2017/07/10/osm-tag-genome-how-are-osm-objects-tagged/">the tag set exploration</a>.</p>
+</div>
+</div>
+</div>
+                    </div>
+                    
+
+           
+
+
+                                                                                                                                                          
+
+                                    
+                                    <div class="information">
+
+                                        <li><i class="linecon-icon-user"></i>By Raphaël Delhome&nbsp;  <i class="linecon-icon-bubble"></i> 0 Comments&nbsp; 
+                                        
+                                                                    
+                       
+                     </li><li class="tags "><i class="linecon-icon-tag"></i>data, OpenStreetMap, osmium, python</li>    
+                         
+                        </div>
+                                                 <ul class="shares">
+                                                        
+                                           
+                                    
+                                                                                                        
+                                            
+                                                <li class="linkedin"><a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/&amp;title=OpenStreetMap%20data%20analysis:%20how%20to%20parse%20the%20data%20with%20Python?" target="_blank"><i class="moon-linkedin"></i></a></li>
+
+                                            
+                                </ul>
+                                                                    
+ 
+                            
+                            <div id="comments" class="header">
+          
+                        <div class="single_title"><h3>0&nbsp;Comments</h3></div>
+                      
+                        <div class="row-fluid comments_list">
+                            
+                                                                                   
+                        </div>
+</div>
+
+
+
+    
+
+        </div></article>
+             
+
+
+                            
+
+                    
+
+                
+
+        
+
+        
+
+                </div> 
+
+                
+               
+
+                
+	 
+        </div> 
+  
+
+    
+
+    <aside class="span3 sidebar" id="widgetarea-sidebar">
+
+    
+
+    <div id="search-2" class="widget widget_search">
+<form action="http://oslandia.com/en/" id="search-form">
+                            <div class="input-append">
+                                <input type="text" size="16" placeholder="Search…" name="s" id="s"><button type="submit" class="more">Search</button>
+                            	<a href="http://oslandia.com/en/2017/07/03/openstreetmap-data-analysis-how-to-parse-the-data-with-python/#" class="close_"><i class="moon-close"></i></a>
+                            </div>
+</form></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h5 class="widget-title">Recent Posts</h5>		<ul>
+					<li>
+				<a href="http://oslandia.com/en/2017/10/25/detecting-objects-starting-from-street-scene-images/">Detecting objects starting from street-scene images</a>
+						</li>
+					<li>
+				<a href="http://oslandia.com/en/2017/10/17/auxiliary-storage-support-in-qgis-3/">Auxiliary Storage support in QGIS 3</a>
+						</li>
+					<li>
+				<a href="http://oslandia.com/en/2017/10/10/undo-redo-stack-is-back-qgis-transaction-groups/">Undo Redo stack is back QGIS Transaction groups</a>
+						</li>
+					<li>
+				<a href="http://oslandia.com/en/2017/10/07/refresh-your-maps-from-postgresql/">Refresh your maps FROM postgreSQL !</a>
+						</li>
+					<li>
+				<a href="http://oslandia.com/en/2017/10/04/oslandia-is-baking-some-awesome-qgis-3-new-features/">Oslandia is baking some awesome QGIS 3 new features</a>
+						</li>
+				</ul>
+		</div>		<div id="archives-2" class="widget widget_archive"><h5 class="widget-title">Archives</h5>		<ul>
+			<li><a href="http://oslandia.com/en/2017/10/">October 2017</a></li>
+	<li><a href="http://oslandia.com/en/2017/09/">September 2017</a></li>
+	<li><a href="http://oslandia.com/en/2017/08/">August 2017</a></li>
+	<li><a href="http://oslandia.com/en/2017/07/">July 2017</a></li>
+	<li><a href="http://oslandia.com/en/2017/06/">June 2017</a></li>
+	<li><a href="http://oslandia.com/en/2017/01/">January 2017</a></li>
+	<li><a href="http://oslandia.com/en/2016/11/">November 2016</a></li>
+	<li><a href="http://oslandia.com/en/2016/09/">September 2016</a></li>
+	<li><a href="http://oslandia.com/en/2016/08/">August 2016</a></li>
+	<li><a href="http://oslandia.com/en/2016/03/">March 2016</a></li>
+	<li><a href="http://oslandia.com/en/2016/02/">February 2016</a></li>
+	<li><a href="http://oslandia.com/en/2016/01/">January 2016</a></li>
+	<li><a href="http://oslandia.com/en/2015/05/">May 2015</a></li>
+	<li><a href="http://oslandia.com/en/2015/02/">February 2015</a></li>
+	<li><a href="http://oslandia.com/en/2015/01/">January 2015</a></li>
+	<li><a href="http://oslandia.com/en/2014/12/">December 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/10/">October 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/09/">September 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/06/">June 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/05/">May 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/02/">February 2014</a></li>
+	<li><a href="http://oslandia.com/en/2014/01/">January 2014</a></li>
+	<li><a href="http://oslandia.com/en/2013/09/">September 2013</a></li>
+	<li><a href="http://oslandia.com/en/2013/07/">July 2013</a></li>
+		</ul>
+		</div><div id="categories-2" class="widget widget_categories"><h5 class="widget-title">Categories</h5>		<ul>
+	<li class="cat-item cat-item-319"><a href="http://oslandia.com/en/category/data/">Data</a>
+</li>
+	<li class="cat-item cat-item-52"><a href="http://oslandia.com/en/category/dev/">Development</a>
+</li>
+	<li class="cat-item cat-item-98"><a href="http://oslandia.com/en/category/event/">Event</a>
+</li>
+	<li class="cat-item cat-item-323"><a href="http://oslandia.com/en/category/gis/">GIS</a>
+</li>
+	<li class="cat-item cat-item-50"><a href="http://oslandia.com/en/category/news/">News</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://oslandia.com/en/category/non-classe/">Others</a>
+</li>
+		</ul>
+</div><div id="tag_cloud-2" class="widget widget_tag_cloud"><h5 class="widget-title">Tags</h5><div class="tagcloud"><a href="http://oslandia.com/en/tag/3d-en/" class="tag-link-81 tag-link-position-1" title="5 topics" style="font-size: 16.296296296296pt;">3D</a>
+<a href="http://oslandia.com/en/tag/3dtiles-en/" class="tag-link-87 tag-link-position-2" title="1 topic" style="font-size: 8pt;">3DTiles</a>
+<a href="http://oslandia.com/en/tag/ai/" class="tag-link-350 tag-link-position-3" title="1 topic" style="font-size: 8pt;">AI</a>
+<a href="http://oslandia.com/en/tag/c/" class="tag-link-154 tag-link-position-4" title="3 topics" style="font-size: 13.185185185185pt;">C++</a>
+<a href="http://oslandia.com/en/tag/cesium/" class="tag-link-79 tag-link-position-5" title="1 topic" style="font-size: 8pt;">Cesium</a>
+<a href="http://oslandia.com/en/tag/codesprint/" class="tag-link-94 tag-link-position-6" title="1 topic" style="font-size: 8pt;">CodeSprint</a>
+<a href="http://oslandia.com/en/tag/data/" class="tag-link-329 tag-link-position-7" title="7 topics" style="font-size: 18.37037037037pt;">data</a>
+<a href="http://oslandia.com/en/tag/deep-learning/" class="tag-link-348 tag-link-position-8" title="1 topic" style="font-size: 8pt;">Deep Learning</a>
+<a href="http://oslandia.com/en/tag/docker/" class="tag-link-113 tag-link-position-9" title="1 topic" style="font-size: 8pt;">Docker</a>
+<a href="http://oslandia.com/en/tag/epanet/" class="tag-link-172 tag-link-position-10" title="1 topic" style="font-size: 8pt;">epanet</a>
+<a href="http://oslandia.com/en/tag/foss4g-en/" class="tag-link-137 tag-link-position-11" title="5 topics" style="font-size: 16.296296296296pt;">foss4g</a>
+<a href="http://oslandia.com/en/tag/framework/" class="tag-link-168 tag-link-position-12" title="1 topic" style="font-size: 8pt;">framework</a>
+<a href="http://oslandia.com/en/tag/horao/" class="tag-link-148 tag-link-position-13" title="2 topics" style="font-size: 11.111111111111pt;">Horao</a>
+<a href="http://oslandia.com/en/tag/image/" class="tag-link-346 tag-link-position-14" title="1 topic" style="font-size: 8pt;">Image</a>
+<a href="http://oslandia.com/en/tag/itowns-en/" class="tag-link-339 tag-link-position-15" title="1 topic" style="font-size: 8pt;">itowns</a>
+<a href="http://oslandia.com/en/tag/javascript/" class="tag-link-106 tag-link-position-16" title="1 topic" style="font-size: 8pt;">javascript</a>
+<a href="http://oslandia.com/en/tag/library/" class="tag-link-162 tag-link-position-17" title="2 topics" style="font-size: 11.111111111111pt;">library</a>
+<a href="http://oslandia.com/en/tag/luigi/" class="tag-link-331 tag-link-position-18" title="1 topic" style="font-size: 8pt;">Luigi</a>
+<a href="http://oslandia.com/en/tag/migration-en/" class="tag-link-139 tag-link-position-19" title="1 topic" style="font-size: 8pt;">migration</a>
+<a href="http://oslandia.com/en/tag/multimodal/" class="tag-link-156 tag-link-position-20" title="2 topics" style="font-size: 11.111111111111pt;">multimodal</a>
+<a href="http://oslandia.com/en/tag/opensource/" class="tag-link-104 tag-link-position-21" title="10 topics" style="font-size: 20.79012345679pt;">opensource</a>
+<a href="http://oslandia.com/en/tag/openstreetmap/" class="tag-link-325 tag-link-position-22" title="8 topics" style="font-size: 19.234567901235pt;">OpenStreetMap</a>
+<a href="http://oslandia.com/en/tag/osgeo/" class="tag-link-92 tag-link-position-23" title="9 topics" style="font-size: 20.098765432099pt;">OSGEO</a>
+<a href="http://oslandia.com/en/tag/osmium/" class="tag-link-333 tag-link-position-24" title="1 topic" style="font-size: 8pt;">osmium</a>
+<a href="http://oslandia.com/en/tag/pgrouting/" class="tag-link-117 tag-link-position-25" title="1 topic" style="font-size: 8pt;">PgRouting</a>
+<a href="http://oslandia.com/en/tag/plugin/" class="tag-link-176 tag-link-position-26" title="1 topic" style="font-size: 8pt;">plugin</a>
+<a href="http://oslandia.com/en/tag/pointcloud/" class="tag-link-58 tag-link-position-27" title="3 topics" style="font-size: 13.185185185185pt;">pointcloud</a>
+<a href="http://oslandia.com/en/tag/postgis/" class="tag-link-54 tag-link-position-28" title="9 topics" style="font-size: 20.098765432099pt;">PostGIS</a>
+<a href="http://oslandia.com/en/tag/postgresql/" class="tag-link-115 tag-link-position-29" title="3 topics" style="font-size: 13.185185185185pt;">PostgreSQL</a>
+<a href="http://oslandia.com/en/tag/python/" class="tag-link-327 tag-link-position-30" title="8 topics" style="font-size: 19.234567901235pt;">python</a>
+<a href="http://oslandia.com/en/tag/qgis-en/" class="tag-link-150 tag-link-position-31" title="12 topics" style="font-size: 22pt;">QGIS</a>
+<a href="http://oslandia.com/en/tag/release/" class="tag-link-164 tag-link-position-32" title="3 topics" style="font-size: 13.185185185185pt;">release</a>
+<a href="http://oslandia.com/en/tag/routing/" class="tag-link-158 tag-link-position-33" title="2 topics" style="font-size: 11.111111111111pt;">routing</a>
+<a href="http://oslandia.com/en/tag/tempus/" class="tag-link-160 tag-link-position-34" title="2 topics" style="font-size: 11.111111111111pt;">tempus</a>
+<a href="http://oslandia.com/en/tag/tensorflow/" class="tag-link-344 tag-link-position-35" title="1 topic" style="font-size: 8pt;">Tensorflow</a>
+<a href="http://oslandia.com/en/tag/ubuntu/" class="tag-link-111 tag-link-position-36" title="1 topic" style="font-size: 8pt;">Ubuntu</a>
+<a href="http://oslandia.com/en/tag/water/" class="tag-link-170 tag-link-position-37" title="1 topic" style="font-size: 8pt;">water</a>
+<a href="http://oslandia.com/en/tag/webgl/" class="tag-link-166 tag-link-position-38" title="1 topic" style="font-size: 8pt;">WebGL</a>
+<a href="http://oslandia.com/en/tag/wfs/" class="tag-link-77 tag-link-position-39" title="1 topic" style="font-size: 8pt;">WFS</a></div>
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    </aside>
+
+
+
+
+       
+            </div>
+    
+</div></section>
+ 
+ <!-- Social Profiles -->
+    
+
+<!-- Footer -->
+    </div>
+
+
+    <div class="footer_wrapper">
+	
+    
+        
+    <footer id="footer" class="type_">
+        
+
+    	<div class="inner">
+	    	<div class="container">
+	        	<div class="row-fluid ff">
+                
+                	<!-- widget -->
+		        	                        <div class="span4">
+                        
+                            <div id="text-5" class="widget widget_text"><h4 class="widget-title">Contact</h4>			<div class="textwidget">Tour De L’Horloge - 4 Place Louis Armand - 75012 PARIS <br>
+11 rue République - 69001 LYON<br><br>
+<a href="mailto:infos@oslandia.com">infos@oslandia.com</a><br><br>
+<a href="tel:+33 184 170 757">+33 184 170 757</a>
+
+</div>
+		</div>                            
+                        </div>
+                        
+                        
+                        
+                         
+                                                <div class="span4">
+                        
+                                    <div id="custom-recent-posts-3" class="widget widget_custom_recent_entries">        <h4 class="widget-title">Recent Posts</h4>        <ul>
+                        
+                
+            <li>
+                <a href="http://oslandia.com/en/2017/10/25/detecting-objects-starting-from-street-scene-images/">Detecting objects starting from street-scene images</a>
+                        </li>
+                
+                
+            <li>
+                <a href="http://oslandia.com/en/2017/10/17/auxiliary-storage-support-in-qgis-3/">Auxiliary Storage support in QGIS 3</a>
+                        </li>
+                
+                
+            <li>
+                <a href="http://oslandia.com/en/2017/10/10/undo-redo-stack-is-back-qgis-transaction-groups/">Undo Redo stack is back QGIS Transaction groups</a>
+                        </li>
+                
+                
+            <li>
+                <a href="http://oslandia.com/en/2017/10/07/refresh-your-maps-from-postgresql/">Refresh your maps FROM postgreSQL !</a>
+                        </li>
+                
+                
+            <li>
+                <a href="http://oslandia.com/en/2017/10/04/oslandia-is-baking-some-awesome-qgis-3-new-features/">Oslandia is baking some awesome QGIS 3 new features</a>
+                        </li>
+                </ul>
+        </div>                                    
+                        </div>
+                        
+                        
+                        
+                         
+                                                <div class="span4">
+                        
+                            <div id="categories-3" class="widget widget_categories"><h4 class="widget-title">Categories</h4>		<ul>
+	<li class="cat-item cat-item-319"><a href="http://oslandia.com/en/category/data/">Data</a>
+</li>
+	<li class="cat-item cat-item-52"><a href="http://oslandia.com/en/category/dev/">Development</a>
+</li>
+	<li class="cat-item cat-item-98"><a href="http://oslandia.com/en/category/event/">Event</a>
+</li>
+	<li class="cat-item cat-item-323"><a href="http://oslandia.com/en/category/gis/">GIS</a>
+</li>
+	<li class="cat-item cat-item-50"><a href="http://oslandia.com/en/category/news/">News</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://oslandia.com/en/category/non-classe/">Others</a>
+</li>
+		</ul>
+</div>                            
+                        </div>
+                        
+                        
+                        
+                         
+                                            
+	            </div>
+	        </div>
+     
+        </div>
+        
+        <div id="copyright">
+	    	<div class="container">
+	        	<div class="row-fluid">
+		        	<div class="span12 desc">
+                        
+                        <div class="span6">
+                            <div id="text-4" class="widget widget_text">			<div class="textwidget"></div>
+		</div>                        </div>
+                   
+                        <div class="span6"><div id="text-3" class="widget widget_text">			<div class="textwidget">Copyright © Oslandia.</div>
+		</div></div>
+                    
+                    
+                    </div>
+                    
+                </div>
+            </div>
+        </div><!-- #copyright -->
+
+    </footer><!-- #footer -->
+</div>
+</div><!--end viewport div-->
+<!-- analytics-code google analytics tracking code --><script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-93066260-1', 'auto');
+	ga('send', 'pageview');
+
+</script><!--  --><script type="text/javascript">
+/* <![CDATA[ */
+var ajax_var = {"url":"http:\/\/oslandia.com\/wp-admin\/admin-ajax.php","nonce":"f9d72c8e7d"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/post-like.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.form.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/scripts.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.easing.1.1.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.mobilemenu.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/isotope.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/layout-mode.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/customSelect.jquery.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.fancybox.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.fancybox-media.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/tooltip.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/switcher.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.hoverex.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.parallax.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/main.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.livequery.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/waypoints.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/background-check.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/idangerous.swiper.min.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/jquery.infinitescroll.js"></script>
+<script type="text/javascript" src="./OpenStreetMap data analysis_ how to parse the data with Python__files/wp-embed.min.js"></script>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+ Served from: oslandia.com @ 2017-11-27 23:40:30 by W3 Total Cache --></body></html>
