@@ -1,0 +1,51 @@
+#Hier steht der Code für den Prototyp Algorithmus 
+import random
+
+Test = [] 
+Zufall = []
+Arbeit = []
+Try = []
+counter = 0 
+
+with open ("DB.csv","r") as file:
+    while counter < 24:
+        for line in file: 
+            data = line.strip().split(";")
+            if data[2] == "Zeiteinheiten":
+                continue            
+            Arbeit.append(data)
+            Test = [Arbeit]
+
+            
+        for part in Test:
+            z = random.randint(0,len(part)-1)
+            #print(part[z])
+#Sicherstellen das Arbeit nur einmal pro Tag abgearbeitet wird
+            if part[z][0] == "Arbeit" and "Arbeit" in Zufall:  
+                continue
+#Kontrolle das der Counter nicht über 24 kann
+            if counter == 17 and part[z][2] == "8":
+                continue
+            elif counter == 18 and int(part[z][2]) >= 7:
+                continue
+            elif counter == 19 and int(part[z][2]) >= 6:
+                continue
+            elif counter == 20 and int(part[z][2]) >= 5:
+                continue
+            elif counter == 21 and int(part[z][2]) >= 4:
+                continue
+            elif counter == 22 and int(part[z][2]) >= 3:
+                continue
+            elif counter == 23 and int(part[z][2]) >= 2:
+                continue
+            #Zufall.append(part[z])
+            Zufall = Zufall + part[z]
+            Try.append(part[z])
+            #Ausgabenkontrolle. Hier würde im echten Code dann der Output code sein
+            print(Try[0][0] + ": " + Try[0][3])
+            print(Try[0][2])
+        if Try != []:
+            counter = counter + int(Try[0][2]) 
+            Try.pop()
+            
+print("Heute war ich " + str(counter) + " Stunden beschäftigt :)")
